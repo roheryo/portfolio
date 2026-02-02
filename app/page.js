@@ -56,7 +56,6 @@ export default function Page() {
           <div className="relative">
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr
               from-cyan-500/20 to-violet-500/20 blur-2xl" />
-
             <img
               src="/image/me.jpg"
               alt="Roger M Madulara Jr"
@@ -71,52 +70,6 @@ export default function Page() {
               editing. I focus on pacing, rhythm, and emotion to create content
               that keeps viewers watching and engaging.
             </p>
-
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                "Video Editing",
-                "Cinematography",
-                "Post-Production",
-                "Visual Effects",
-              ].map(skill => (
-                <div
-                  key={skill}
-                  className="rounded-xl bg-white/8 border border-white/15
-                  backdrop-blur-md p-4 text-sm"
-                >
-                  {skill}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SERVICES */}
-      <section id="services" className="relative z-10 py-24 bg-white/5 backdrop-blur">
-        <div className="max-w-7xl mx-auto px-6">
-          <h3 className="text-3xl font-bold mb-10 text-center">Services</h3>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              "Trending Edits",
-              "Transition Effects",
-              "Sound Design",
-              "Visual Effects",
-              "Growth Strategy",
-              "Viral Optimization",
-            ].map(service => (
-              <div
-                key={service}
-                className="rounded-2xl bg-white/8 border border-white/15
-                backdrop-blur-md p-6"
-              >
-                <h4 className="font-semibold mb-2">{service}</h4>
-                <p className="text-sm text-slate-400">
-                  High-impact editing tailored for short-form platforms.
-                </p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -134,13 +87,15 @@ export default function Page() {
               bg-white/10 border border-white/20 backdrop-blur-md relative group"
             >
               <video
-                src={src}
                 autoPlay
                 loop
                 muted
                 playsInline
+                preload="metadata"
                 className="w-full h-full object-cover"
-              />
+              >
+                <source src={src} type="video/mp4" />
+              </video>
 
               {/* Play overlay */}
               <div className="absolute inset-0 flex items-center justify-center
@@ -155,7 +110,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 🎬 MODAL VIDEO PLAYER */}
+      {/* 🎬 MODAL PLAYER */}
       {activeVideo && (
         <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
           <div className="relative w-full max-w-4xl aspect-video bg-black rounded-xl overflow-hidden">
@@ -167,11 +122,13 @@ export default function Page() {
             </button>
 
             <video
-              src={activeVideo}
               controls
               autoPlay
+              preload="metadata"
               className="w-full h-full object-contain bg-black"
-            />
+            >
+              <source src={activeVideo} type="video/mp4" />
+            </video>
           </div>
         </div>
       )}
